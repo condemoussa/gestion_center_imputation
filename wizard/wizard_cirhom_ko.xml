@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="wizard_cirhom_ko_form_pdf">
+            <field name="name">CIRHOM KO</field>
+            <field name="model">wizard.cirhom.ko</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Cirhom ko">
+                    <sheet>
+                        <group>
+                        <h2>LA LISTE DES CIRHOMS KO</h2>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_cirhom_ko" type="object" string="Cirhom ko"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_cirhom_ko_form_pdf_view">
+            <field name="name">CIRHOM KO</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.cirhom.ko</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="wizard_cirhom_ko_form_pdf"/>
+        </record>
+
+         <!-- Action pour générer le PDF -->
+      <record id="report_cirhom_ko_views_action" model="ir.actions.report">
+        <field name="name">CIRHOM KO</field>
+        <field name="model">wizard.matricule.ko</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">gestion_center_imputation.rapport_cirhom_ko_pdf</field>
+        <field name="binding_model_id" ref="model_wizard_cirhom_ko"/>
+        <field name="binding_view_types">list</field>
+        <field name="binding_type">report</field>
+      </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+
+        <!-- Template QWeb pour le rapport PDF -->
+        <template id="rapport_cirhom_ko_pdf">
+            <t t-call="web.external_layout">
+                <main>
+                    <div class="page">
+                        <!-- Styles CSS intégrés -->
+                        <style>
+                            table {
+                                width: 100%;
+                                border-collapse: collapse;
+                            }
+                            th, td {
+                                border: 1px solid black;
+                                padding: 5px;
+                                text-align: left;
+                            }
+                            th {
+                                background-color: white;
+                                color: #F0590D;
+                                weight :bold;
+                            }
+
+                        </style>
+                        <h2 style="color:red;font-weight:bold;">CIRHOM_KO_<t t-esc="annee"/><t t-esc="mois"/></h2>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                     <th>N°</th>
+                                    <th>SOCIÉTÉ</th>
+                                    <th>NUMÉRO</th>
+                                    <th>MATRICULE</th>
+                                    <th>NOM-PRÉNOM</th>
+                                    <th>CC-CI</th>
+                                    <th>NBRE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="line_data" t-as="line">
+                                    <tr>
+                                        <td><t t-esc="line['compte']"/></td>
+                                        <td><t t-esc="line['societ_id']"/></td>
+                                        <td><t t-esc="line['numero']"/></td>
+                                        <td><t t-esc="line['matricule']"/></td>
+                                        <td><t t-esc="line['nom']"/></td>
+                                        <td><t t-esc="line['cc_ci']"/></td>
+                                        <td><t t-esc="line['nbre']"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </t>
+        </template>
+
+    </data>
+</odoo>

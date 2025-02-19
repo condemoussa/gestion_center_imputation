@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="wizard_vider_table_centre_imputation">
+            <field name="name">VIDER LES TABLES</field>
+            <field name="model">vider.centre.imputation</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="VIDER LES TABLES">
+                    <sheet>
+                        <group>
+                        <h2>VIDER LES TABLES</h2>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="vider_centre_imputation" type="object" string="Valider"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="wizard_action_vide_table_centre_imputation">
+            <field name="name">VIDER LES TABLES</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vider.centre.imputation</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="wizard_vider_table_centre_imputation"/>
+        </record>
+
+
+
+    </data>
+</odoo>

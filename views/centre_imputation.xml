@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+<!--      la views form de l'annuaire telephone-->
+      <record id="view_annuaire_telephone_form" model="ir.ui.view">
+      <field name="name">FICHE POSTE</field>
+      <field name="model">annuaire.telephone</field>
+      <field name="arch" type="xml">
+        <form string="FICHE POSTE">
+              <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="nom_prenom"/>
+                    <field name="matricule"/>
+                    <field name="entrep"/>
+                    <field name="centre_fra"/>
+                    <field name="quo_telephoen"/>
+                    <field name="bonus"/>
+                    <field name="automc"/>
+                    <field name="site"/>
+                    <field name="droit_acces"/>
+                    <field name="restric"/>
+                    <field name="type_poste"/>
+                </group>
+              </sheet>
+        </form>
+      </field>
+   </record>
+
+      <!--      la views tree de l'annuaire telephone-->
+
+      <record id="view_annuaire_telephone_tree" model="ir.ui.view">
+        <field name="name">FICHE POSTE</field>
+        <field name="model">annuaire.telephone</field>
+        <field name="arch" type="xml">
+            <tree string="FICHE POSTE">
+                <field name="name" string="Nom "/>
+                <field name="nom_prenom" string="Prénom"/>
+                <field name="matricule" string="Matricule "/>
+                <field name="entrep" string="Entreprise "/>
+                <field name="site" string="Site "/>
+                 <field name="droit_acces" string="Droit accès"/>
+                <field name="restric" string="restriction"/>
+                <field name="type_poste" string="Type de poste"/>
+                <field name="centre_fra" string="Centre de frais"/>
+                <field name="quo_telephoen" string="Quota telephonique"/>
+                <field name="bonus" string="Bonus"/>
+            </tree>
+        </field>
+    </record>
+
+        <!--      la views search de l'annuaire telephone-->
+      <record id="view_annuaire_telephone_search" model="ir.ui.view">
+        <field name="name">FICHE POSTE</field>
+        <field name="model">annuaire.telephone</field>
+        <field name="arch" type="xml">
+            <search string="ANNUAIRE TELEPHONIQUE">
+                <field name="name"/>
+                <field name="nom_prenom"/>
+                <field name="matricule"/>
+                <field name="entrep"/>
+            </search>
+        </field>
+     </record>
+
+       <!--      la views action de l'annuaire telephone-->
+      <record id="action_annuaire_telephone" model="ir.actions.act_window">
+        <field name="name">FICHE POSTE</field>
+        <field name="res_model">annuaire.telephone</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+
+            <record id="action_server_centre_vider_table_annuaire" model="ir.actions.server">
+                    <field name="name">Vider la table</field>
+                    <field name="model_id" ref="model_annuaire_telephone"/>
+                    <field name="state">code</field>
+                    <field name="code">
+                        if records:
+                              action = records.netoyer_la_table()
+                    </field>
+               </record>
+
+
+  </data>
+</odoo>

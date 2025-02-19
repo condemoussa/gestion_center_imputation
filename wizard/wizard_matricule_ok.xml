@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="wizard_matricule_ok_form_pdf">
+            <field name="name">MATRICULE OK</field>
+            <field name="model">wizard.matricule.ok</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="MATRICULE OK">
+                    <sheet>
+                        <group>
+                        <h2>LA LISTE DES MATRICULES OK</h2>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_matricule_ok" type="object" string="Matricule ok"   />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_matricule_ok_form_pdf_view">
+            <field name="name">MATRICULE OK</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.matricule.ok</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="wizard_matricule_ok_form_pdf"/>
+        </record>
+
+         <!-- Action pour générer le PDF -->
+      <record id="report_matricule_ok_views_action" model="ir.actions.report">
+        <field name="name">MATRICULE OK</field>
+        <field name="model">wizard.matricule.ok</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">gestion_center_imputation.rapport_matricule_ok_pdf</field>
+        <field name="binding_model_id" ref="model_wizard_matricule_ok"/>
+        <field name="binding_view_types">list</field>
+        <field name="binding_type">report</field>
+      </record>
+
+    </data>
+</odoo>

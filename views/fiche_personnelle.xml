@@ -1,0 +1,82 @@
+<odoo>
+    <data>
+        <!-- Vue Liste -->
+        <record id="view_fiche_personnelle_list" model="ir.ui.view">
+            <field name="name">FICHE RH</field>
+            <field name="model">fiche.personnelle</field>
+            <field name="arch" type="xml">
+                <tree string="FICHE RH">
+                    <field name="societ_id" string="Société"/>
+                    <field name="mat_pers" string="Matricule"/>
+                    <field name="nom_pers" string="Nom"/>
+                    <field name="pren_pers" string="Prénom "/>
+                    <field name="c_c_pers" string="CC-CI"/>
+                    <field name="act_pers" string="ACT"/>
+                    <field name="ctra_pers" string="CTRA"/>
+                </tree>
+            </field>
+        </record>
+
+         <!--      la views search de l'annuaire telephone-->
+          <record id="view_fiche_personnelle_search" model="ir.ui.view">
+            <field name="name">FICHE RH</field>
+            <field name="model">fiche.personnelle</field>
+            <field name="arch" type="xml">
+                <search string="FICHE RH">
+                    <field name="nom_pers" string="Nom"/>
+                    <field name="mat_pers" string="Matricule"/>
+                    <field name="c_c_pers" string="CC-CI"/>
+                </search>
+            </field>
+         </record>
+
+        <!-- Vue Formulaire -->
+        <record id="view_fiche_personnelle_form" model="ir.ui.view">
+            <field name="name">FICHE RH</field>
+            <field name="model">fiche.personnelle</field>
+            <field name="arch" type="xml">
+                <form string="FICHE RH">
+                      <sheet>
+                        <group>
+                            <field name="societ_id"/>
+                            <field name="mat_pers"/>
+                            <field name="nom_pers"/>
+                            <field name="pren_pers"/>
+                            <field name="c_c_pers"/>
+                            <field name="act_pers"/>
+                            <field name="ctra_pers"/>
+                        </group>
+                      </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Actions et menu -->
+        <record id="action_fiche_personnelle" model="ir.actions.act_window">
+            <field name="name">FICHE RH</field>
+            <field name="res_model">fiche.personnelle</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+          <record id="action_nottoyer_table" model="ir.actions.server">
+            <field name="name">Vider la table</field>
+            <field name="model_id" ref="model_fiche_personnelle"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                      action = records.netoyer_la_table()
+            </field>
+            </record>
+
+                <record id="action_server_centre_imputationok" model="ir.actions.server">
+                    <field name="name">Croisement Matricule </field>
+                    <field name="model_id" ref="model_fiche_personnelle"/>
+                    <field name="state">code</field>
+                    <field name="code">
+                        if records:
+                              action = records.fiche_matriculeok()
+                    </field>
+               </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!-- menu general  -->
+      <menuitem name="LA REVUE DES CENTRES D'IMPUTATION" id="id_menu_general_centre_imputation"
+      />
+        <!-- *************************************************************** -->
+      <!-- menu gestion des centre d imputation -->
+
+      <menuitem
+                    name="Fiche RH" id="id_fiche_personnnelle"
+                    parent="id_menu_general_centre_imputation"
+                     action="action_fiche_personnelle"
+                    sequence="1"
+            />
+
+      <menuitem
+                    name="Fiche Poste" id="id_annuare_telephonique"
+                    parent="id_menu_general_centre_imputation"
+                     action="action_annuaire_telephone"
+                    sequence="2"
+            />
+        <menuitem
+                    name="Vider les tables" id="id_vider_centr_imputation"
+                    parent="id_menu_general_centre_imputation"
+                     action="wizard_action_vide_table_centre_imputation"
+                    sequence="8"
+            />
+
+      <menuitem
+                    name="Fiche Matricule" id="id_fichiers_generes_principale"
+                     parent="id_menu_general_centre_imputation"
+                    sequence="3"
+            />
+
+      <menuitem
+                    name="Matricule ko" id="id_matricule_ko"
+                    parent="id_fichiers_generes_principale"
+                    action="action_fiche_matricule_ko"
+                    sequence="1" />
+
+      <menuitem
+                    name="Matricule ok" id="id_matricule_ok_1111"
+                    parent="id_fichiers_generes_principale"
+                    action="action_fiche_matricule_ok"
+                    sequence="2"
+            />
+
+      <menuitem
+                    name="Fiche Cirhom" id="id_fichiers_cirhom_principale"
+                     parent="id_menu_general_centre_imputation"
+                    sequence="4"
+            />
+
+      <menuitem
+                    name="Cirhom ok" id="id_cirhom_ok"
+                    parent="id_fichiers_cirhom_principale"
+                    action="action_fiche_cirhom_ok"
+                    sequence="2"
+            />
+
+      <menuitem
+                    name="Cirhom ko" id="id_cirhom_ko"
+                    parent="id_fichiers_cirhom_principale"
+                    action="action_fiche_cirhom_ko"
+                    sequence="1"
+            />
+
+<!--&lt;!&ndash;        rapport des rendu&ndash;&gt;-->
+
+      <menuitem
+                    name="Rapport" id="id_rapport_principale_pdf"
+                     parent="id_menu_general_centre_imputation"
+                    sequence="5"
+            />
+
+      <menuitem
+                    name="Matricule ok" id="wizard_matricule_ok"
+                    parent="id_rapport_principale_pdf"
+                    action="action_matricule_ok_form_pdf_view"
+                    sequence="1"
+            />
+
+      <menuitem
+                    name="Matricule ko" id="wizard_matricule_ko"
+                    parent="id_rapport_principale_pdf"
+                    action="action_matricule_ko_form_pdf_view"
+                    sequence="2"
+            />
+
+         <menuitem
+                    name="Cirhom ko" id="wizard_cirhom_ko"
+                    parent="id_rapport_principale_pdf"
+                    action="action_cirhom_ko_form_pdf_view"
+                    sequence="3"
+            />
+
+        <menuitem
+                    name="Cirhom ok" id="wizard_cirhom_ok"
+                    parent="id_rapport_principale_pdf"
+                    action="action_cirhom_ok_form_pdf_view"
+                    sequence="4"
+            />
+
+
+  </data>
+</odoo>

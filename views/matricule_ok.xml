@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+        <!-- Vue Liste -->
+        <record id="view_fiche_matricule_ok" model="ir.ui.view">
+            <field name="name">MATRICULE OK</field>
+            <field name="model">fiche.matricule.ok</field>
+            <field name="arch" type="xml">
+                <tree string="MATRICULE OK">
+                    <field name="entrep" string="Société"/>
+                    <field name="matricule" string="Matricule"/>
+                    <field name="nom_prenom" string="Nom et Prenom "/>
+                    <field name="name" string="Numero "/>
+                    <field name="centre_fra" string="Centre de frais"/>
+                    <field name="nbre" string="Nbre"/>
+                </tree>
+            </field>
+
+        </record>
+         <!--      la views search de l'annuaire telephone-->
+          <record id="view_fiche_matricule_search" model="ir.ui.view">
+            <field name="name">MATRICULE OK</field>
+            <field name="model">fiche.matricule.ok</field>
+            <field name="arch" type="xml">
+                <search string="MATRICULE OK">
+                    <field name="name" string="Numero"/>
+                    <field name="matricule" string="Matricule"/>
+                </search>
+            </field>
+         </record>
+
+        <!-- Actions et menu -->
+        <record id="action_fiche_matricule_ok" model="ir.actions.act_window">
+            <field name="name">MATRICULE OK</field>
+            <field name="res_model">fiche.matricule.ok</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+
+         <record id="action_server_centre_cirhom_ok" model="ir.actions.server">
+                    <field name="name">Deuxième croisement </field>
+                    <field name="model_id" ref="model_fiche_matricule_ok"/>
+                    <field name="state">code</field>
+                    <field name="code">
+                        if records:
+                              action = records.cirhom_ok_v2()
+                    </field>
+               </record>
+<!--         <record id="action_server_centre_cirhom_ko" model="ir.actions.server">-->
+<!--                    <field name="name">CIRHOM-KO</field>-->
+<!--                    <field name="model_id" ref="model_fiche_matricule_ok"/>-->
+<!--                    <field name="state">code</field>-->
+<!--                    <field name="code">-->
+<!--                        if records:-->
+<!--                              action = records.cirhom_ko_v2()-->
+<!--                    </field>-->
+<!--               </record>-->
+
+    </data>
+</odoo>

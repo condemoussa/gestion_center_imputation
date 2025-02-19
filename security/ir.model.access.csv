@@ -1,0 +1,13 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_annuaire_telephone,annuaire.telephone,model_annuaire_telephone,,1,1,1,1
+access_fiche_personnelle,fiche.personnelle,model_fiche_personnelle,,1,1,1,1
+access_fiche_matricule_ko,fiche.matricule.ko,model_fiche_matricule_ko,,1,1,1,1
+access_fiche_matricule_ok,fiche.matricule.ok,model_fiche_matricule_ok,,1,1,1,1
+access_fiche_cirhom_ko,fiche.cirhom.ko,model_fiche_cirhom_ko,,1,1,1,1
+access_fiche_cirhom_ok,fiche.cirhom.ok,model_fiche_cirhom_ok,,1,1,1,1
+access_wizard_matricule_ok,wizard.matricule.ok,model_wizard_matricule_ok,,1,1,1,1
+access_wizard_matricule_ko,wizard.matricule.ko,model_wizard_matricule_ko,,1,1,1,1
+access_wizard_cirhom_ko,wizard.cirhom.ko,model_wizard_cirhom_ko,,1,1,1,1
+access_wizard_cirhom_ok,wizard.cirhom.ok,model_wizard_cirhom_ok,,1,1,1,1
+access_vider_centre_imputation,vider.centre.imputation,model_vider_centre_imputation,,1,1,1,1
+
