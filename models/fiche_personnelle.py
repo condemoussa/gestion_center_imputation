@@ -54,12 +54,12 @@ class FichePersonnelle(models.Model):
     @api.model
     def fiche_matriculeok(self):
         centre_annuaire = self.env["annuaire.telephone"].search([])
-        #matricule_ok = self.env["fiche.matricule.ok"].search([]).unlink()
-        # Parcourir les enregistrements de "fiche.personnelle" (self fait référence à la table actuelle)
-        for fiche in self:
+        fiche_rh = self.env["fiche.personnelle"].search([])
+        for fiche in fiche_rh:
             # Parcourir également les enregistrements de "annuaire.telephone"
             for annuaire in centre_annuaire:
                 if fiche.mat_pers == annuaire.matricule:
+
                     self.env["fiche.matricule.ok"].create({
                         "entrep": annuaire.entrep,
                         "name": annuaire.name,

@@ -6,6 +6,7 @@ from odoo.exceptions import UserError, ValidationError
 
 class AnnuaireTelephonique(models.Model):
     _name = "annuaire.telephone"
+    _description = "Annuaire telephonique"
 
 
     def netoyer_la_table(self):
