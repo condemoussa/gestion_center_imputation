@@ -26,6 +26,9 @@
                     <field name="nom_pers" string="Nom"/>
                     <field name="mat_pers" string="Matricule"/>
                     <field name="c_c_pers" string="CC-CI"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Matricule" name="mat_pers" domain="[]" context="{'group_by': 'mat_pers'}"  />
+                    </group>
                 </search>
             </field>
          </record>

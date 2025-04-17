@@ -12,11 +12,16 @@
                         </group>
                     </sheet>
                     <footer>
-                        <button name="vider_centre_imputation" type="object" string="Valider"/>
+                           <button name="vider_fiche_rh" type="object" string="Vider fiche RH"/>
+                           <button name="vider_fiche_poste" type="object" string="Vider fiche poste"/>
+                            <button name="vider_matricule_ok" type="object" string="Vider matricule ok"/>
+                           <button name="vider_matricule_ko" type="object" string="Vider matricule ko"/>
+                            <button name="vider_centre_imputation" type="object" string="Vider tous"/>
                     </footer>
                 </form>
             </field>
         </record>
+
 
         <record model="ir.actions.act_window" id="wizard_action_vide_table_centre_imputation">
             <field name="name">VIDER LES TABLES</field>

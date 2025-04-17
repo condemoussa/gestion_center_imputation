@@ -13,26 +13,49 @@ class FichePersonnelle(models.Model):
 
 
 
+    # @api.model
+    # def fiche_matriculeko(self):
+    #     # Récupération des lignes de la table "annuaire.telephone"
+    #     centre_annuaire = self.env["annuaire.telephone"].search([])
+    #     fiche_personnelle = self.env["fiche.personnelle"].search([])
+
+        # for annuaire in centre_annuaire:
+        #     if annuaire.matricule !=False:
+        #         if annuaire.matricule[-4:] !="0000":
+        #             if not fiche_personnelle.filtered(lambda p: p.mat_pers == annuaire.matricule):
+        #                 # Création d'un nouvel enregistrement dans la table "fiche.matricule.ko"
+        #                 self.env["fiche.matricule.ko"].create({
+        #                     "entrep": annuaire.entrep,
+        #                     "name": annuaire.name,
+        #                     "matricule": annuaire.matricule,
+        #                     "nom_prenom": annuaire.nom_prenom,
+        #                     "centre_fra": annuaire.centre_fra,
+        #                     "nbre": 1
+        #                 })
+    #
+
     @api.model
     def fiche_matriculeko(self):
-        # Récupération des lignes de la table "annuaire.telephone"
-        centre_annuaire = self.env["annuaire.telephone"].search([])
+        # Charger toutes les fiches personnelles
         fiche_personnelle = self.env["fiche.personnelle"].search([])
+        # Créer un set pour un accès rapide par les matricules
+        matricules_rh = set(fiche.mat_pers for fiche in fiche_personnelle if fiche.mat_pers)
+
+        # Charger tous les enregistrements de l'annuaire
+        centre_annuaire = self.env["annuaire.telephone"].search([])
 
         for annuaire in centre_annuaire:
-            if annuaire.matricule !=False:
-                if annuaire.matricule[-4:] !="0000":
-                    if not fiche_personnelle.filtered(lambda p: p.mat_pers == annuaire.matricule):
-                        # Création d'un nouvel enregistrement dans la table "fiche.matricule.ko"
-                        self.env["fiche.matricule.ko"].create({
-                            "entrep": annuaire.entrep,
-                            "name": annuaire.name,
-                            "matricule": annuaire.matricule,
-                            "nom_prenom": annuaire.nom_prenom,
-                            "centre_fra": annuaire.centre_fra,
-                            "nbre": 1
-                        })
-    #
+            matricule = annuaire.matricule
+            if matricule and matricule[-4:] != "0000":
+                if matricule not in matricules_rh:
+                    self.env["fiche.matricule.ko"].create({
+                        "entrep": annuaire.entrep,
+                        "name": annuaire.name,
+                        "matricule": annuaire.matricule,
+                        "nom_prenom": annuaire.nom_prenom,
+                        "centre_fra": annuaire.centre_fra,
+                        "nbre": 1
+                    })
 
     @api.model
     def fiche_matricule(self):
@@ -55,19 +78,21 @@ class FichePersonnelle(models.Model):
     def fiche_matriculeok(self):
         centre_annuaire = self.env["annuaire.telephone"].search([])
         fiche_rh = self.env["fiche.personnelle"].search([])
-        for fiche in fiche_rh:
-            # Parcourir également les enregistrements de "annuaire.telephone"
-            for annuaire in centre_annuaire:
-                if fiche.mat_pers == annuaire.matricule:
 
-                    self.env["fiche.matricule.ok"].create({
-                        "entrep": annuaire.entrep,
-                        "name": annuaire.name,
-                        "matricule": annuaire.matricule,
-                        "nom_prenom": annuaire.nom_prenom,
-                        "centre_fra": annuaire.centre_fra,
-                        "nbre": 1
-                    })
+        annuaire_dict = {a.matricule: a for a in centre_annuaire}
+        for fiche in fiche_rh:
+            annuaire = annuaire_dict.get(fiche.mat_pers)
+            if annuaire:
+                self.env["fiche.matricule.ok"].create({
+                    "entrep": annuaire.entrep,
+                    "name": annuaire.name,
+                    "matricule": annuaire.matricule,
+                    "nom_prenom": annuaire.nom_prenom,
+                    "centre_fra": annuaire.centre_fra,
+                    "nbre": 1
+                })
+
+
 
         self.fiche_matriculeko()
         self.fiche_matricule()
