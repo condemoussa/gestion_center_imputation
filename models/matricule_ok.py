@@ -9,70 +9,43 @@ import logging
 class FicheMatriculeKo(models.Model):
     _name = "fiche.matricule.ok"
 
-    def cirhom_ko_v2(self):
-        fiche_personnelle_records = self.env["fiche.personnelle"].search([])
-        annuaires = self  # Suppose que `self` est un recordset d'annuaires
-        matricule_ko = self.env["fiche.cirhom.ko"].search([]).unlink()
+    @api.model
+    def cirhom_ok_version2(self):
+        centre_annuaire = self.env["annuaire.telephone"].search([])
+        fiche_rh = self.env["fiche.personnelle"].search([])
 
-        # Créer un dictionnaire pour la recherche rapide
-        valctra_mapping = {}
-        for fiche in fiche_personnelle_records:
-            centre_frais_num = ''.join(re.findall(r'\d+', fiche.c_c_pers))
-            valctra = centre_frais_num + str(fiche.act_pers) + str(fiche.ctra_pers)
-            valctra_mapping[valctra] = fiche
-
-        # Boucler sur les annuaires seulement une fois
-        for annuaire in annuaires:
-            centre_frais_num_annuaire = ''.join(re.findall(r'\d+', annuaire.centre_fra))
-            # Vérification directe dans le dictionnaire
-            if centre_frais_num_annuaire not in valctra_mapping:
-                # As there is no corresponding fiche, you cannot access valctra_mapping with centre_frais_num_annuaire
-                self.env["fiche.cirhom.ko"].create({
-                    "entrep": annuaire.entrep,
-                    "name": annuaire.name,
-                    "matricule": annuaire.matricule,
-                    "nom_prenom": annuaire.nom_prenom,
-                    "centre_fra": annuaire.centre_fra,
-                    "nbre": 1
-                })
-
-    def cirhom_ok_v2(self):
-        fiche_personnelle_records = self.env["fiche.personnelle"].search([])
-        matricule_ok= self.env["fiche.cirhom.ok"].search([]).unlink()
-        cirhom_ko = self.env["fiche.cirhom.ko"].search([]).unlink()
-        annuaires = self  # Suppose que `self` est un recordset d'annuaires
-
-        # Créer un dictionnaire pour la recherche rapide
-        valctra_mapping = {}
-        for fiche in fiche_personnelle_records:
-            # centre_frais_num = ''.join(re.findall(r'\d+', fiche.c_c_pers))
-            valctra = str(fiche.c_c_pers) + str(fiche.act_pers)
-            valctra_mapping[valctra] = fiche
+        annuaire_dict = {a.matricule: a for a in centre_annuaire}
+        for fiche in fiche_rh:
+            annuaire = annuaire_dict.get(fiche.mat_pers)
+            if annuaire:
+                val_c_c_pers_act_pers = str(fiche.c_c_pers)+str(fiche.act_pers)
+                if '_' in annuaire.centre_fra:
+                    centre_frais = annuaire.centre_fra.split('_', 1)[1]
+                    if val_c_c_pers_act_pers in centre_frais :
+                        self.env["fiche.cirhom.ok"].create({
+                            "entrep": annuaire.entrep,
+                            "name": annuaire.name,
+                            "matricule": annuaire.matricule,
+                            "nom_prenom": annuaire.nom_prenom,
+                            "centre_fra": annuaire.centre_fra +"       "+val_c_c_pers_act_pers,
+                            "nbre": 1
+                        })
+                    else :
+                        self.env["fiche.cirhom.ko"].create({
+                            "entrep": annuaire.entrep,
+                            "name": annuaire.name,
+                            "matricule": annuaire.matricule,
+                            "nom_prenom": annuaire.nom_prenom,
+                            "centre_fra": annuaire.centre_fra +"        "+val_c_c_pers_act_pers ,
+                            "nbre": 1
+                        })
 
 
-        for annuaire in annuaires:
-            centre_frais_num_annuaire = ''.join(re.findall(r'\d+', annuaire.centre_fra))
-            # Vérification directe dans le dictionnaire
-            if centre_frais_num_annuaire in valctra_mapping:
-                self.env["fiche.cirhom.ok"].create({
-                    "entrep": annuaire.entrep,
-                    "name": annuaire.name,
-                    "matricule": annuaire.matricule,
-                    "nom_prenom": annuaire.nom_prenom,
-                    "centre_fra": annuaire.centre_fra,
-                    "nbre": 1
-                })
 
-            else :
 
-                self.env["fiche.cirhom.ko"].create({
-                    "entrep": annuaire.entrep,
-                    "name": annuaire.name,
-                    "matricule": annuaire.matricule,
-                    "nom_prenom": annuaire.nom_prenom,
-                    "centre_fra": annuaire.centre_fra,
-                    "nbre": 1
-                })
+
+
+
 
 
 

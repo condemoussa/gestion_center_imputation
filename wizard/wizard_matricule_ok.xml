@@ -8,7 +8,8 @@
                 <form string="MATRICULE OK">
                     <sheet>
                         <group>
-                        <h2>LA LISTE DES MATRICULES OK</h2>
+                            <group><field name="mois"/></group>
+                            <group><field name="annee"/></group>
                         </group>
                     </sheet>
                     <footer>

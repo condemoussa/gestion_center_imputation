@@ -7,8 +7,9 @@
             <field name="arch" type="xml">
                 <form string="Cirhomok">
                     <sheet>
-                        <group>
-                        <h2>LA LISTE DES CIRHOMS OK</h2>
+                         <group>
+                            <group><field name="mois"/></group>
+                            <group><field name="annee"/></group>
                         </group>
                     </sheet>
                     <footer>

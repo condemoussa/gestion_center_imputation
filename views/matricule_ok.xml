@@ -42,7 +42,7 @@
                     <field name="state">code</field>
                     <field name="code">
                         if records:
-                              action = records.cirhom_ok_v2()
+                              action = records.cirhom_ok_version2()
                     </field>
                </record>
 <!--         <record id="action_server_centre_cirhom_ko" model="ir.actions.server">-->

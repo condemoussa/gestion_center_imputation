@@ -28,25 +28,25 @@
                         <table class="table table-sm">
                             <thead>
                                 <tr>
-                                     <th>N°</th>
-                                    <th>SOCIÉTÉ</th>
-                                    <th>NUMÉRO</th>
-                                    <th>MATRICULE</th>
-                                    <th>NOM-PRÉNOM</th>
-                                    <th>CC-CI</th>
-                                    <th>NBRE</th>
+                                     <th style="text-align:center;">N°</th>
+                                    <th style="text-align:center;">SOCIÉTÉ</th>
+                                    <th style="text-align:center;">NUMÉRO</th>
+                                    <th style="text-align:center;">MATRICULE</th>
+                                    <th >NOM-PRÉNOM</th>
+                                    <th style="text-align:center;">CC-CI</th>
+                                    <th style="text-align:center;">NBRE</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-foreach="line_data" t-as="line">
                                     <tr>
-                                        <td><t t-esc="line['compte']"/></td>
-                                        <td><t t-esc="line['societ_id']"/></td>
-                                        <td><t t-esc="line['numero']"/></td>
-                                        <td><t t-esc="line['matricule']"/></td>
+                                        <td style="text-align:center;"><t t-esc="line['compte']"/></td>
+                                        <td style="text-align:center;"><t t-esc="line['societ_id']"/></td>
+                                        <td style="text-align:center;"><t t-esc="line['numero']"/></td>
+                                        <td style="text-align:center;"><t t-esc="line['matricule']"/></td>
                                         <td><t t-esc="line['nom']"/></td>
-                                        <td><t t-esc="line['cc_ci']"/></td>
-                                        <td><t t-esc="line['nbre']"/></td>
+                                        <td style="text-align:center;"><t t-esc="line['cc_ci']"/></td>
+                                        <td style="text-align:center;"><t t-esc="line['nbre']"/></td>
                                     </tr>
                                 </t>
                             </tbody>

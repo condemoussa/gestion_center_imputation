@@ -57,21 +57,6 @@ class FichePersonnelle(models.Model):
                         "nbre": 1
                     })
 
-    @api.model
-    def fiche_matricule(self):
-        centre_annuaire = self.env["annuaire.telephone"].search([])
-        for annuaire in centre_annuaire:
-            # Comparaison des matricules ou autre logique
-            if annuaire.matricule != False:
-                if annuaire.matricule[-4:] == "0000":
-                    self.env["fiche.matricule.ok"].create({
-                        "entrep": annuaire.entrep,
-                        "name": annuaire.name,
-                        "matricule": annuaire.matricule,
-                        "nom_prenom": annuaire.nom_prenom,
-                        "centre_fra": annuaire.centre_fra,
-                        "nbre": 1
-                    })
 
 
     @api.model
@@ -95,7 +80,7 @@ class FichePersonnelle(models.Model):
 
 
         self.fiche_matriculeko()
-        self.fiche_matricule()
+
 
 
     # Les information des personnelle de la societe

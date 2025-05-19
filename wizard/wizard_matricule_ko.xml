@@ -7,8 +7,9 @@
             <field name="arch" type="xml">
                 <form string="MATRICULE KO">
                     <sheet>
-                        <group>
-                        <h2>LA LISTE DES MATRICULES KO</h2>
+                         <group>
+                            <group><field name="mois"/></group>
+                            <group><field name="annee"/></group>
                         </group>
                     </sheet>
                     <footer>

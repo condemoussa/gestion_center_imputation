@@ -26,7 +26,7 @@ class AnnuaireTelephonique(models.Model):
         existing_records.unlink()
 
 
-    name = fields.Char("N° Tel :")
+    name = fields.Char("POSTE:")
     nom_prenom = fields.Char("Nom  et prénom :")
     matricule = fields.Char("Matricule :")
     entrep = fields.Char("Entreprise :")

@@ -34,7 +34,7 @@
         <field name="model">annuaire.telephone</field>
         <field name="arch" type="xml">
             <tree string="FICHE POSTE">
-                <field name="name" string="Nom "/>
+                <field name="name" string="Poste"/>
                 <field name="nom_prenom" string="Prénom"/>
                 <field name="matricule" string="Matricule "/>
                 <field name="entrep" string="Entreprise "/>
